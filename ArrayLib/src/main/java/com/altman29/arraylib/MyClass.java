@@ -59,12 +59,20 @@ public class MyClass {
 //        System.out.println(array);
 
         //使用泛型
-        Array<Integer> arr = new Array<>(10);
-        for (int i = 0; i < 10; i++) {
+        Array<Integer> arr = new Array<>(5);
+        for (int i = 0; i < 5; i++) {
             arr.addLast(i);
         }
 
         System.out.println(arr);
 
+        arr.removeLast();
+        System.out.println(arr);
+        arr.removeLast();
+        System.out.println(arr);
+        arr.removeLast();
+        System.out.println(arr);
+        arr.removeLast();
+        System.out.println(arr);
     }
 }

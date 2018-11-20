@@ -75,15 +75,18 @@ public class Array<E> {
      * @param e
      */
     public void add(int index, E e) {
-        //1.查询容量是否可以添加
-        if (size == data.length) {
-            //没有容量，添加失败，先抛出异常
-            throw new IllegalArgumentException("Add failed. Array is full.");
-        }
-
+        //扩容操作 把 1 和 2 判断顺序更换
         //2.index 合法检测
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("Add failed. Require index >= 0 and index <= size");
+        }
+
+        //1.查询容量是否可以添加
+        if (size == data.length) {
+            //没有容量，添加失败，先抛出异常
+//            throw new IllegalArgumentException("Add failed. Array is full.");
+            //不抛出异常，而进行扩容操作
+            resize(2 * data.length);//Collection的list扩容使用的是1.5
         }
 
         //从后往前挪（控制循环多少次）
@@ -218,6 +221,11 @@ public class Array<E> {
 
         size--;
         data[size] = null;//不是必须的   术语 loitering objects 游荡的对象 但不等于 memory leak。不过手动去除比较好。
+
+        if (size == data.length / 2) {
+            //缩容
+            resize(data.length / 2);
+        }
         return del;
         //不用管data[size]还保持有元素，因为index的合法性来说，用户是无法访问index==size的元素的。
         //使用泛型的时候，需要考虑这个问题，如果size位置保存者对象，是无法回收的。可以设置为null
@@ -282,5 +290,18 @@ public class Array<E> {
             }
         }
         return res.toString();
+    }
+
+    /**
+     * 扩容方法
+     *
+     * @param newCapacity
+     */
+    private void resize(int newCapacity) {
+        E[] newData = (E[]) new Object[newCapacity];
+        for (int i = 0; i < size; i++) {
+            newData[i] = data[i];//拿到每个元素
+        }
+        data = newData;//拿到引用
     }
 }
