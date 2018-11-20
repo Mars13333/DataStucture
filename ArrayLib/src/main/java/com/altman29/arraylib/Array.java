@@ -5,11 +5,11 @@ package com.altman29.arraylib;
  * e-mial:chensiyuan@duozhuan.cn
  * Desc: 数组的二次封装
  */
-public class Array {
+public class Array<E> {
     /**
      * 操作的数组
      */
-    private int[] data;
+    private E[] data;
 
     /**
      * 当前数据的大小。修改元素时，需要维护
@@ -29,7 +29,8 @@ public class Array {
      * @param capacity
      */
     public Array(int capacity) {
-        data = new int[capacity];
+//        data = new E[capacity]; 不能直接这样写
+        data = (E[]) new Object[capacity];
         size = 0;
     }
 
@@ -68,31 +69,12 @@ public class Array {
     }
 
     /**
-     * 向数组中添加一个元素
-     * 过时，有调用add的方法实现
-     *
-     * @param e
-     */
-    public void _addLast(int e) {
-        //1.查询容量是否可以添加
-        if (size == data.length) {
-            //没有容量，添加失败，先抛出异常
-            throw new IllegalArgumentException("AddLast failed. Array is full.");
-        }
-//        data[size] = e;
-//        size++;
-        //也可以这也写，但是不推荐，一行只执行一种操作
-        data[size++] = e;
-    }
-
-
-    /**
      * 向第index个位置插入一个新元素e     //从后往前挪
      *
      * @param index
      * @param e
      */
-    public void add(int index, int e) {
+    public void add(int index, E e) {
         //1.查询容量是否可以添加
         if (size == data.length) {
             //没有容量，添加失败，先抛出异常
@@ -127,7 +109,7 @@ public class Array {
      *
      * @param e
      */
-    public void addLast(int e) {
+    public void addLast(E e) {
         add(size, e);
     }
 
@@ -136,7 +118,7 @@ public class Array {
      *
      * @param e
      */
-    public void addFirst(int e) {
+    public void addFirst(E e) {
         add(0, e);
     }
 
@@ -146,7 +128,7 @@ public class Array {
      * @param index
      * @return
      */
-    public int get(int index) {
+    public E get(int index) {
         //1.index合法检测
         if (index < 0 || index >= size) {
             //保证用户无法访问没有元素的位置
@@ -166,7 +148,7 @@ public class Array {
      * @param index
      * @param e
      */
-    public void set(int index, int e) {
+    public void set(int index, E e) {
         //1.index合法检测
         if (index < 0 || index >= size) {
             //保证用户无法访问没有元素的位置
@@ -180,9 +162,9 @@ public class Array {
      *
      * @param e
      */
-    public boolean contains(int e) {
+    public boolean contains(E e) {
         for (int i = 0; i < size; i++) {//注意是size
-            if (data[i] == e) {
+            if (data[i].equals(e)) {//类比较使用equals
                 return true;
             }
         }
@@ -196,9 +178,9 @@ public class Array {
      * @param e
      * @return
      */
-    public int find(int e) {
+    public int find(E e) {
         for (int i = 0; i < size; i++) {//注意是size
-            if (data[i] == e) {
+            if (data[i].equals(e)) {
                 return i;
             }
         }
@@ -214,7 +196,7 @@ public class Array {
      * @param index 索引
      * @return 被删除的元素
      */
-    public int removeByIndex(int index) {
+    public E removeByIndex(int index) {
         //1.首先判断数组是否为空
         if (isEmpty()) {
             throw new IllegalArgumentException("remove failed.Array is Empty");
@@ -224,7 +206,7 @@ public class Array {
             throw new IllegalArgumentException("remove failed.Require index >= 0 || index <= size");
         }
 
-        int del = data[index];
+        E del = data[index];
 
         //目标索引后的索引都向左移
 //        for (int i = size - 1; i > index; i--) {
@@ -235,24 +217,27 @@ public class Array {
         }
 
         size--;
+        data[size] = null;//不是必须的   术语 loitering objects 游荡的对象 但不等于 memory leak。不过手动去除比较好。
         return del;
         //不用管data[size]还保持有元素，因为index的合法性来说，用户是无法访问index==size的元素的。
+        //使用泛型的时候，需要考虑这个问题，如果size位置保存者对象，是无法回收的。可以设置为null
     }
 
-    public int removeFirst() {
+    public E removeFirst() {
         return removeByIndex(0);
     }
 
-    public int removeLast() {
+    public E removeLast() {
         return removeByIndex(size - 1);
     }
 
     /**
      * 删除一个元素
      * 没有考虑重复的元素 find方法类似，没有考虑重复的元素。但逻辑先这样
+     *
      * @param e
      */
-    public void removeElement(int e) {
+    public void removeElement(E e) {
         int index = find(e);
         if (index != -1) {
             removeByIndex(index);

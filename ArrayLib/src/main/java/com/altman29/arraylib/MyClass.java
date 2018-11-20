@@ -36,11 +36,11 @@ public class MyClass {
 
         //使用自己的数组
 
-        Array array = new Array(20);
-        for (int i = 0; i < 10; i++) {
-            array.addLast(i);
-        }
-        System.out.println(array);
+//        Array array = new Array(20);
+//        for (int i = 0; i < 10; i++) {
+//            array.addLast(i);
+//        }
+//        System.out.println(array);
 
 //        array.add(1,100);
 //
@@ -55,7 +55,16 @@ public class MyClass {
 
 //        System.out.println(array);
 
-        array.removeLast();
-        System.out.println(array);
+//        array.removeLast();
+//        System.out.println(array);
+
+        //使用泛型
+        Array<Integer> arr = new Array<>(10);
+        for (int i = 0; i < 10; i++) {
+            arr.addLast(i);
+        }
+
+        System.out.println(arr);
+
     }
 }
