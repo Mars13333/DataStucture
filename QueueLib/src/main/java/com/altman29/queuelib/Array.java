@@ -1,4 +1,4 @@
-package com.altman29.arraylib;
+package com.altman29.queuelib;
 
 /**
  * Created by Csy on 2018/11/20.

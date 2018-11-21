@@ -24,14 +24,23 @@ public class Solution {
                 if (c == ')' && topChar != '(') {//如果当前c是右小括号，当时当前的topChar不是左侧的小括号就是匹配失败
                     return false;
                 }
-                if (c==']'&&topChar!='['){
+                if (c == ']' && topChar != '[') {
                     return false;
                 }
-                if (c=='}'&&topChar!='{'){
+                if (c == '}' && topChar != '{') {
                     return false;
                 }
             }
         }
         return mStack.isEmpty();//此时不为空 就是匹配了。
+    }
+
+    public static void main(String[] args) {
+        String s = "(){}[](}]()[}";
+        String s1 = "(){}[]";
+
+        System.out.println(new Solution().isValid(s));
+        System.out.println(new Solution().isValid(s1));
+
     }
 }
