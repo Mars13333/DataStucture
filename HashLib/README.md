@@ -57,3 +57,14 @@
     Student。还是转成整型处理。取模。
 
 Java中的hashCode
+    Student hashcode的实现
+    & equals
+
+
+哈希冲突的处理，链地址法
+    Seperate Chaining：分隔的链表
+    哈希表本质就是一个数组+链表。哈希冲突时，添加到一个索引下的查找表。
+    HashMap就是一个TreeMap数组
+    HashSet就是一个TreeSet数组
+
+    而Java中就是每个位置对应一个链表，但是Java8开始，当哈希冲突达到一定程度，每个位置从链表转成红黑树。
