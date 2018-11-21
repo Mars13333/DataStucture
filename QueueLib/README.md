@@ -25,3 +25,11 @@
     E getFront()                    O(1)
     int getSize()                   O(1)
     boolean isEmpty()               O(1)
+
+循环队列的实现 LoopQueue  不使用动态数组实现，使用java提供的数组实现 扩容，入队，出队
+    LoopQueue<E>
+    void enqueue<E>                 O(1)均摊
+    E dequeue()                     O(1)均摊！！！
+    E getFront()                    O(1)
+    int getSize()                   O(1)
+    boolean isEmpty()               O(1)

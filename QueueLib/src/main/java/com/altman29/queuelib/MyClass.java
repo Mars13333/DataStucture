@@ -1,5 +1,7 @@
 package com.altman29.queuelib;
 
+import com.altman29.queuelib.array_queue.ArrayQueue;
+
 public class MyClass {
 
     public static void main(String[] args) {

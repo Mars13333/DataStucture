@@ -1,4 +1,7 @@
-package com.altman29.queuelib;
+package com.altman29.queuelib.array_queue;
+
+import com.altman29.queuelib.base.Array;
+import com.altman29.queuelib.base.Queue;
 
 /**
  * Created by Csy on 2018/11/21.

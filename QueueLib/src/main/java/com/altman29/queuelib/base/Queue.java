@@ -1,4 +1,4 @@
-package com.altman29.queuelib;
+package com.altman29.queuelib.base;
 
 /**
  * Created by Csy on 2018/11/21.
