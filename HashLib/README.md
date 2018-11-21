@@ -56,3 +56,4 @@
     复合类型
     Student。还是转成整型处理。取模。
 
+Java中的hashCode
