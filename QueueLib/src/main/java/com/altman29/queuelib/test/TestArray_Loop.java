@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * Created by Csy on 2018/11/21.
  * e-mial:chensiyuan@duozhuan.cn
- * Desc:    测试ArrayQueue 和LoopQueue 耗时区别。
+ * Desc:    测试ArrayQueue 和LoopQueue 耗时区别。  sss
  */
 public class TestArray_Loop {
 
