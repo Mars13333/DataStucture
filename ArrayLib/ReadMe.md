@@ -23,3 +23,47 @@
     并把old数组指向新的数组，old的引用指向new的数组。俩个指向同样的控件。所以在执行完后，new的引用就失效了。而old指向了新的。并回收了old的空间。
     其实删除元素时也可以做优化容量的操作。
     resize()
+
+
+简单的时间复杂度分析(理论分析！！)
+    目前位置，都是代码实现。
+    这一段，简单的分析一下时间复杂度。
+
+    O(1) , O(n) , O(logn) , O(nlogn) , O(n^2)
+    大O描述的是算法的运行时间和输入数据之间的关系
+
+    e.对一个数组中的数据求和
+    public static int sum(int[] nums){
+        int sum = 0;
+        for(int num : nums) sum+= num;
+        return sum;
+    }
+    这个算法就是O(n)的。 n是nums中的元素个数。O(n)就是求和算法运行的时间多少和数组中元素的个数呈线性关系。nums数组中匀速越多，执行时间越长。
+    忽略常数， 应该称为 渐进时间复杂度。描述n趋近于无穷的情况。
+
+    添加操作
+        addLast(e)      O(1)
+        addFirst(e)     O(n) 都要后移
+        add(index,e)    O(n/2) = O(n)
+        添加操作整体是:O(n)    如果容量满了 还会涉及 resize : O(n)
+
+    删除操作
+        removeLast(e)   O(1)
+        removeFirst(e)  O(n)
+        removeByIndex(index,e) O(n/2) = O(n)
+        删除操作整体是:O(n)        resize: O(n)
+
+    修改操作
+        set(index ,e )  O(1)   数组的优势。知道索引 可以立即访问到。
+        未知索引O(n)或者已知索引O(1)
+
+    查询操作
+        get(index)      O(1)
+        contains(e)     O(n)
+        find(e)         O(n)
+        未知索引O(n)或者已知索引O(1)
+
+    索引具有语义是使用数组的场景。
+
+
+

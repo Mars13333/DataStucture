@@ -1,1 +1,1 @@
-include ':app', ':ArrayLib'
+include ':app', ':ArrayLib', ':StackLib'

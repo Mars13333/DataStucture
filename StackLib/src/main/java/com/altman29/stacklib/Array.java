@@ -1,4 +1,4 @@
-package com.altman29.arraylib;
+package com.altman29.stacklib;
 
 /**
  * Created by Csy on 2018/11/20.
@@ -143,6 +143,16 @@ public class Array<E> {
          * 而add中 是插入操作，index=size是可以的，就相当于向数组末尾添加一个元素
          */
         return data[index];
+    }
+
+    //栈的需求添加俩个方法
+
+    public E getLast() {
+        return get(size - 1);
+    }
+
+    public E getFirst() {
+        return get(0);
     }
 
     /**
