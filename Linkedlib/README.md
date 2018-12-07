@@ -73,3 +73,24 @@ LinkedList
         get(index)          O(n)
         contains(e)         O(n)
 
+
+
+---
+
+
+使用链表实现栈的数据结构
+
+    Interface Stack<E>                  <---------  LinkedListStack<E>
+    void push(E)                        implements
+    E pop()
+    E peek()
+    int getSize()
+    boolean isEmpty()
+
+与数组实现的Stack数据结构的差异
+    十万级数据量 入栈和出栈操作耗时
+    ArrayStack time: 0.066
+    LinkedListStack time: 0.02
+    十万级比数组实现的栈相比高效一点，因为不涉及数组的扩容的相关操作，LinkedList实现的是真正动态的，但是它是new来操作的。但是也不能准确说那个比较好
+    因为不同级别的数据级来说，new和扩容的耗时都是不一样当。因为复杂度的差异不大。
+
