@@ -10,6 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/ArrayLib" />
             <option value="$PROJECT_DIR$/HashLib" />
+            <option value="$PROJECT_DIR$/Linkedlib" />
             <option value="$PROJECT_DIR$/QueueLib" />
             <option value="$PROJECT_DIR$/StackLib" />
             <option value="$PROJECT_DIR$/app" />
