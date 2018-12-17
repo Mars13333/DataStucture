@@ -1,1 +1,1 @@
-include ':app', ':ArrayLib', ':StackLib', ':QueueLib', ':HashLib', ':Linkedlib'
+include ':app', ':ArrayLib', ':StackLib', ':QueueLib', ':HashLib', ':Linkedlib', ':BSTlib'
