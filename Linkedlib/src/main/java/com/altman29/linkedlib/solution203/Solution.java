@@ -52,4 +52,35 @@ class Solution {
         }
         return dummyHead.next;
     }
+
+    class Solution3 {
+        /**
+         * 递归方式实现
+         * 头节点+一个短一点的链表
+         *
+         * @return
+         */
+        public ListNode removeElements(ListNode head, int val) {
+            if (head == null)
+                return null;
+
+            ListNode res = removeElements(head.next, val);//要删除的node
+            if (head.val == val)//如果头节点的值等于目标值
+                return res;//返回头节点
+            else {
+                head.next = res;//把头节点的next链接到后面
+                return head;
+            }
+        }
+
+        //简化版
+        public ListNode removeElements1(ListNode head, int val) {
+            if (head == null)
+                return null;
+
+            head.next = removeElements(head.next, val);//要删除的node
+            return head.val == val ? head.next : head;
+
+        }
+    }
 }
