@@ -69,7 +69,7 @@ public class BST<E extends Comparable<E>> {
         /*
         因为新的add已经考虑了为null的逻辑，所以这里可以不用判断
          */
-        root=add(root,e);
+        root = add(root, e);
     }
 
     /**
@@ -138,6 +138,42 @@ public class BST<E extends Comparable<E>> {
             node.right = add(node.right, e);//省略了==的情况
 
         return node;
+    }
+
+
+    /**
+     * 查看二分搜索树中是否包含元素e
+     * 递归的方式实现
+     * 从根开始查找逐渐到子树查找的过程直到找到或者找不到元素e
+     */
+    public boolean contains(E e) {
+        return contains(root, e);
+    }
+
+    /**
+     * 查找的递归实现
+     * 查看以node为根的二分搜索树中是否包含元素e的递归算法
+     *
+     * 从宏观的角度考虑contains的具体语意是什么 确定整体成立的逻辑
+     * 从微观的角度具体的写几个元素更一下contains算法看方法是如何一步一步的得到结果的
+     * @param node
+     * @param e
+     * @return
+     */
+    private boolean contains(Node node, E e) {
+        //1.首先处理终止情况
+        if (null == node) {
+            //若节点为空 直接放回false
+            return false;
+        }
+
+        if (e.compareTo(node.e) == 0)//compareTo==0 说明找到 直接返回true
+            return true;
+        else if (e.compareTo(node.e) < 0) {//compareTo<0 说明目标元素e在当前node的左子树中
+            //所以响应的就去当前node的左子树中去找目标元素
+            return contains(node.left, e);//递归左子树
+        } else //e.compareTo(node.e)>0
+            return contains(node.right, e);//递归右子树
     }
 
 
