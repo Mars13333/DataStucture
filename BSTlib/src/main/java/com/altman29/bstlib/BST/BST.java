@@ -153,9 +153,10 @@ public class BST<E extends Comparable<E>> {
     /**
      * 查找的递归实现
      * 查看以node为根的二分搜索树中是否包含元素e的递归算法
-     *
+     * <p>
      * 从宏观的角度考虑contains的具体语意是什么 确定整体成立的逻辑
      * 从微观的角度具体的写几个元素更一下contains算法看方法是如何一步一步的得到结果的
+     *
      * @param node
      * @param e
      * @return
@@ -177,4 +178,104 @@ public class BST<E extends Comparable<E>> {
     }
 
 
+    /**
+     * 前序遍历，对用户提供不需要提供参数
+     * 二分搜索树的前序遍历
+     * 前序:先访问该节点，再访问左子树和右子树
+     */
+    public void preOrder() {
+        preOrder(root);
+    }
+
+    /**
+     * 具体的递归实现
+     * 语意:
+     * ----前序遍历----以node为根的二分搜索树的递归算法
+     *
+     * @param node
+     */
+    private void preOrder(Node node) {
+        //1.首先处理递归终止条件
+        if (node == null) {
+            return;
+        }
+
+//        if (node != null) {//和上面的等价  但是尽量写成上面的风格 思路比较清晰
+        //遍历过程的操作就是简单的输出
+        System.out.println(node.e);//先该节点
+        preOrder(node.left);//再左子树
+        preOrder(node.right);//再右子树}
+//        }
+    }
+
+    /**
+     * 中序遍历:先访问该节点的左子树，再访问该节点，再访问该节点的右子树
+     * 中序也就是二分搜索树BST的排序实现！！！！
+     */
+    public void inOrder() {
+        inOrder(root);
+    }
+
+    /**
+     * 具体的递归实现
+     *
+     * @param node
+     */
+    private void inOrder(Node node) {
+        //1.递归终止的条件
+        if (node == null)
+            return;
+
+        inOrder(node.left);
+        System.out.println(node.e);
+        inOrder(node.right);
+    }
+
+    public void postOrder() {
+        postOrder(root);
+    }
+
+    private void postOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+        postOrder(node.left);
+        postOrder(node.right);
+        System.out.println(node.e);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        //展示二分搜索树: 其实就是一个前序的遍历过程
+        generateBSTString(root, 0, res);
+        return res.toString();
+    }
+
+    /**
+     * 生成以node为根节点，深度为depth的秒数二叉树的字符串
+     *
+     * @param node
+     * @param depth
+     * @param res
+     */
+    private void generateBSTString(Node node, int depth, StringBuilder res) {
+        if (node == null) {
+            res.append(generateDepthString(depth) + "null\n");
+            return;
+        }
+        res.append(generateDepthString(depth) + node.e + "\n");
+
+        generateBSTString(node.left, depth + 1, res);//递归的调用左子树
+        generateBSTString(node.right, depth + 1, res);//递归的调用左子树
+
+    }
+
+    private String generateDepthString(int depth) {
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < depth; i++) {
+            res.append("--");
+        }
+        return res.toString();
+    }
 }
